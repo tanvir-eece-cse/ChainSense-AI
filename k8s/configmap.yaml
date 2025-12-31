@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chainsense-config
+  namespace: chainsense-ai
+data:
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "INFO"
+  CORS_ORIGINS: "https://chainsense.ai,https://www.chainsense.ai"
+  ML_SERVICE_URL: "http://ml-service:8001"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: chainsense-secrets
+  namespace: chainsense-ai
+type: Opaque
+stringData:
+  # These should be replaced with actual secrets in production
+  # Use: kubectl create secret generic chainsense-secrets --from-literal=...
+  SECRET_KEY: "change-this-in-production-with-strong-secret"
+  POSTGRES_USER: "chainsense"
+  POSTGRES_PASSWORD: "change-this-in-production"
+  POSTGRES_DB: "chainsense_db"
+  REDIS_PASSWORD: "change-this-in-production"
+  DATABASE_URL: "postgresql+asyncpg://chainsense:change-this-in-production@postgres:5432/chainsense_db"
+  REDIS_URL: "redis://:change-this-in-production@redis:6379/0"

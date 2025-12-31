@@ -1,0 +1,22 @@
+[project]
+name = "chainsense-ai-ml-service"
+version = "1.0.0"
+description = "ChainSense-AI Machine Learning Service"
+authors = [
+    {name = "Md. Tanvir Hossain", email = "tanvir.eece.mist@gmail.com"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: chainsense-ai
+  labels:
+    app.kubernetes.io/name: chainsense-ai
+    app.kubernetes.io/part-of: chainsense-ai
