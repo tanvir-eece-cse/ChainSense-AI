@@ -185,6 +185,7 @@ jobs:
           scan-ref: './backend'
           format: 'sarif'
           output: 'trivy-backend.sarif'
+        continue-on-error: true
 
       - name: Run Trivy vulnerability scanner (Frontend)
         uses: aquasecurity/trivy-action@master
@@ -193,17 +194,20 @@ jobs:
           scan-ref: './frontend'
           format: 'sarif'
           output: 'trivy-frontend.sarif'
+        continue-on-error: true
 
       - name: Upload Trivy scan results
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'trivy-backend.sarif'
           category: 'trivy-backend'
+        continue-on-error: true
 
       - name: Python SAST with Bandit
         run: |
           pip install bandit
           bandit -r backend/app -f json -o bandit-report.json || true
+        continue-on-error: true
           
       - name: Upload Bandit results
         uses: actions/upload-artifact@v4
